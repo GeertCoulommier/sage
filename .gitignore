@@ -1,0 +1,54 @@
+# ── Data folder: real exam content (student-identifiable data) is gitignored ──
+Sage/data/exams/*/
+exams/
+!Sage/data/exams/_example/
+!Sage/data/exams/_example/**
+!Sage/data/exams/bad/
+!Sage/data/exams/bad/**
+!Sage/data/exams/live-test/
+!Sage/data/exams/live-test/**
+!Sage/data/exams/full-live-test/
+!Sage/data/exams/full-live-test/**
+!Sage/data/exams/werkcolleges-2526/
+!Sage/data/exams/werkcolleges-2526/**
+
+# ── Results and logs (may contain personal data) ──────────────────────────────
+output/
+results/
+Sage/data/logs/
+Sage/data/output/
+Sage/data/config/
+
+# ── Legacy scripts (kept locally for reference only) ──────────────────────────
+legacy/
+!legacy/labs_new_2/
+!legacy/labs_new_2/**
+
+# ── OS and editor artefacts ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# ── PowerShell artefacts ──────────────────────────────────────────────────────
+*.ps1xml
+
+# ── VS Code workspace settings (local overrides) ─────────────────────────────
+# settings.json is tracked — it contains crash-prevention settings.
+.vscode/launch.json
+
+# ── Test runner logs ─────────────────────────────────────────────────────────
+tools/logs/
+logs/
+
+# ── Test output and coverage ──────────────────────────────────────────────────
+testResults/
+coverage/
+*.xml
+
+# ── Secrets ───────────────────────────────────────────────────────────────────
+*.pfx
+*.key
+*.cred

@@ -1,0 +1,7 @@
+# markdownlint configuration
+# MD003: Allow ATX-style headings (## Heading) everywhere
+MD003:
+  style: atx
+# MD022: Blank lines around headings — YAML frontmatter in issue templates
+# triggers a false positive on the first heading after ---; disable globally
+MD022: false

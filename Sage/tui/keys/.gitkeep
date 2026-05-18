@@ -1,0 +1,6 @@
+# SAGE lab SSH key pair
+#
+# id_sage      — private key (committed to sage-private; stripped from public mirror by sync-public.yml)
+# id_sage.pub  — public key  (install on all target VMs — see tools/Install-SageKey.ps1)
+#
+# DO NOT share the private key outside of sage-private.

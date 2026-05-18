@@ -1,0 +1,54 @@
+// SAGE — Devcontainer for local Docker and GitHub Codespaces.
+//
+// Base:       Ubuntu with PowerShell 7.x (latest) and Node.js LTS.
+// Modules:    Pester, ImportExcel, SecretManagement, SecretStore, PSScriptAnalyzer.
+// Lint:       markdownlint-cli2 (npm).
+// Vault:      SecretStore configured in no-password mode (container = security boundary).
+// Hooks:      Git pre-commit hook auto-installed from .github/hooks/.
+//
+// SSH agent forwarding is automatic for local containers (host ssh-agent must be running).
+// For Codespaces: add SSH keys via GitHub Settings > Codespaces > Secrets.
+{
+    "name": "SAGE",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/devcontainers/features/powershell:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.powershell",
+                "DavidAnson.vscode-markdownlint",
+                "bierner.markdown-mermaid",
+                "github.copilot",
+                "github.copilot-chat"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "pwsh",
+                "terminal.integrated.profiles.linux": {
+                    "pwsh": {
+                        "path": "pwsh",
+                        "icon": "terminal-powershell"
+                    }
+                }
+            }
+        }
+    },
+    "mounts": [
+        "source=/etc/localtime,target=/etc/localtime,type=bind,readonly",
+        "source=/etc/timezone,target=/etc/timezone,type=bind,readonly"
+    ],
+    // npm and pwsh setup run in parallel (independent of each other)
+    "postCreateCommand": {
+        "npm-tools": "npm install -g markdownlint-cli2",
+        "pwsh-setup": "pwsh -NoProfile -File .devcontainer/postCreate.ps1"
+    },
+    // Runs on every container start — cleans up orphaned SSH/pwsh from crashes
+    "postStartCommand": "pwsh -NoProfile -File .devcontainer/postStart.ps1",
+    "remoteUser": "vscode"
+}
