@@ -1,0 +1,16 @@
+{
+    // Markdownlint configuration for the SAGE project.
+    // Docs: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+    "default": true,
+    // MD013 — Line length: disabled; long lines are common in technical docs & tables.
+    "MD013": false,
+    // MD024 — No duplicate headings: disabled; CHANGELOG uses repeated "Added" / "Fixed" etc.
+    "MD024": false,
+    // MD033 — No inline HTML: disabled; occasionally needed for emphasis in docs.
+    "MD033": false,
+    // MD041 — First line must be a top-level heading: disabled for CHANGELOG / CLAUDE files
+    //          that start with metadata or blank lines.
+    "MD041": false,
+    // MD060 — Table column style: disabled; separator alignment is cosmetic and doesn't affect rendering.
+    "MD060": false
+}

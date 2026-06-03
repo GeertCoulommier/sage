@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# .github/hooks/pre-commit
+# Bash shim — delegates all checks to the PowerShell hook script.
+#
+# Checks performed (in order):
+#   1. Sensitive path guard   (exam/results/logs)
+#   2. Content secret scan    (passwords, tokens, keys)
+#   3. Module manifest check  (Test-ModuleManifest)
+#   4. PSScriptAnalyzer lint
+#   5. Markdown lint          (markdownlint-cli2, soft-fail if not installed)
+#   6. Unit tests             (Pester Tag=Unit)
+#
+# Install: cp .github/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PS_HOOK="$SCRIPT_DIR/pre-commit.ps1"
+
+if ! command -v pwsh &>/dev/null; then
+    echo "❌ pwsh not found — cannot run PowerShell pre-commit hook." >&2
+    exit 1
+fi
+
+exec pwsh -NoProfile -NonInteractive -File "$PS_HOOK"

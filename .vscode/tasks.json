@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Lint PowerShell",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "tools/Run-PowerShellLint.ps1"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Tests (safe)",
+            "detail": "Out-of-process Pester runner — never crashes VS Code",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-NonInteractive",
+                "-File",
+                "tools/Run-Tests.ps1"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "clear": true
+            }
+        },
+        {
+            "label": "Run Tests (detailed)",
+            "detail": "Out-of-process with full Pester output on terminal",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-NonInteractive",
+                "-File",
+                "tools/Run-Tests.ps1",
+                "-Detailed"
+            ],
+            "group": "test",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "clear": true
+            }
+        }
+    ]
+}

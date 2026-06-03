@@ -1,0 +1,31 @@
+{
+    // ── Terminal stability (prevent extension host crashes) ────────────────
+    // Reduce scrollback buffer — large output accumulation is a known crash
+    // source when Pester or collectors dump verbose output.
+    "terminal.integrated.scrollback": 5000,
+    // Disable GPU acceleration in terminal — unstable in remote containers
+    // and Codespaces, causes sporadic extension host crashes.
+    "terminal.integrated.gpuAcceleration": "off",
+    // ── PowerShell extension ──────────────────────────────────────────────
+    // Suppress verbose PSIC output that can overwhelm the extension host.
+    // The PowerShell extension's analysis engine can consume significant
+    // memory when scanning large module trees.
+    "powershell.scriptAnalysis.settingsPath": "PSScriptAnalyzerSettings.psd1",
+    // ── File watcher exclusions (reduce I/O pressure) ─────────────────────
+    "files.watcherExclude": {
+        "**/tools/logs/**": true,
+        "**/data/logs/**": true,
+        "**/data/config/**": true,
+        "**/data/output/**": true,
+        "**/legacy/**": true,
+        "**/node_modules/**": true
+    },
+    // ── Search exclusions ─────────────────────────────────────────────────
+    "search.exclude": {
+        "**/tools/logs/**": true,
+        "**/data/logs/**": true,
+        "**/data/config/**": true,
+        "**/data/output/**": true,
+        "**/legacy/**": true
+    }
+}
